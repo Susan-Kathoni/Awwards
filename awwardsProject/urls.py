@@ -26,6 +26,5 @@ urlpatterns = [
     url(r'^accounts/', include('django_registration.backends.one_step.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/logout/$', views.logout_then_login, {"next_page": '/'}),
-     url(r'^api-token-auth/', obtain_auth_token)
-    
+    url(r'^api-token-auth/', obtain_auth_token)
 ]

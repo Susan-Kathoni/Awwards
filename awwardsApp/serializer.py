@@ -1,7 +1,15 @@
 from rest_framework import serializers
-from .models import MoringaMerch
+from .models import *
 
-class MerchSerializer(serializers.ModelSerializer):
+class ProjectsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MoringaMerch
-        fields = ('name', 'description', 'price')
+        model = Projects
+        fields = ['author', 'image', 'description', 'date_created', 'title', 'link', 'author_profile']
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['user', 'image', 'biography', 'created', 'modified']   
+        
+        
+    
