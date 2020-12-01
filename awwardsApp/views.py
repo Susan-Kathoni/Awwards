@@ -21,8 +21,9 @@ from .permissions import IsAdminOrReadOnly
 # Create your views here.
 def index(request):
     date =dt.date.today()
-    posts = Post.objects.all()
-    return render(request, 'projects/index.html', {"date":date, "posts":posts })
+    projects = Projects.objects.all()
+    return render(request, 'index.html', locals())
+
 
 class MerchList(APIView):
     def get(self, request, format=None):
@@ -58,22 +59,21 @@ class MerchDescription(APIView):
 def new_post(request):
         current_user = request.user
         if request.method == 'POST':
-                form = PostForm(request.POST, request.FILES)
+                form = ProjectForm(request.POST, request.FILES)
                 if form.is_valid():
                         add=form.save(commit=False)
                         add.user = current_user
                         add.save()
-                return redirect('home')
+                return redirect('posts/post_project.html')
         else:
-                form = PostForm()
-                return render(request,'new_post.html', {"form":form})
-            
-            
+                form = ProjectForm()
+                return render(request,'posts/post_project.html', {"form":form})
+                       
             
 # Create your views here.
 class SignupView(FormView):
     """Signup View."""
-    template_name = 'registration/registration.html'
+    template_name = 'user_registration/signup.html'
 #     form_class = Signup
     success_url = reverse_lazy('users:login')
 
@@ -85,7 +85,7 @@ class SignupView(FormView):
 
 class LoginView(auth_views.LoginView):
     """Login view"""
-    template_name = 'registration/login.html'
+    template_name = 'user_registration/login.html'
     redirect_authenticated_user = True
 
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
@@ -93,9 +93,9 @@ class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
 
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     """Update a user's profile view"""
-    template_name = 'update_profile.html'
+    template_name = 'user_registration/profile_update.html'
     model = Profile
-    fields = ['website', 'biography', 'phone_number', 'picture']
+    fields = ['user', 'biography', 'image']
     # Return success url
     def get_object(self):
         """Return user's profile"""
@@ -121,17 +121,6 @@ class UserDetailView(DetailView):
         context['posts'] = Post.objects.filter(profile__user=user).order_by('-created')
         return context
 
-
-
-
-# @login_required(login_url='/registration/login/')
-def index(request):
-    date =dt.date.today()
-    # posts = Post.objects.all()
-    # comments = Comments.objects.all()
-    profile = Profile.get_all_profiles()
-    
-    return render(request, 'index.html', locals())
     
 @login_required(login_url='/registration/login/')
 def add_image(request):
@@ -151,46 +140,30 @@ def add_image(request):
 def profile_info(request):
         current_user = request.user
         profile = Profile.objects.filter(user=current_user).first()
-        posts = request.user.image_set.all()
+        # posts = request.user.images.all()
        
-        return render(request, 'userProfile.html', {"images": posts, "profile": profile})
+        return render(request, 'User_registration/user_profile.html', { "profile": profile})
 
 @login_required(login_url='/accounts/login/') 
 def profile_update(request):
          current_user = request.user
          if request.method == 'POST':
-                form = ProfileForm(request.POST, request.FILES)
+                form = UpdateForm(request.POST, request.FILES)
                 if form.is_valid():
                         add=form.save(commit=False)
                         add.user = current_user
                         add.save()
                 return redirect('profile')
          else:
-                form = ProfileForm()
-         return render(request,'profile_update.html',{"form":form})
+                form = UpdateForm()
+         return render(request,'User_registration/profile_update.html',{"form":form})
 
-@login_required(login_url='/accounts/login/')
-def postproject(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = ProjectForm(request.POST, request.FILES)
-        if form.is_valid():
-            project = form.save(commit=False)
-            project.author = current_user
-            project.save()
-        return redirect('/')
-    else:
-        form = ProjectForm()
-    context = {
-        'form':form,
-    }
-    return render(request, 'post_project.html', context)
 
 @login_required(login_url='/accounts/login/')
 def get_project(request, id):
     project = Projects.objects.get(pk=id)
 
-    return render(request, 'project.html', {'project':project})
+    return render(request, 'posts/project.html', {'project':project})
                  
 
 @login_required(login_url='/accounts/login/')
