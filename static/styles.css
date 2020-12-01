@@ -41,6 +41,9 @@ body {
   .sidenav a {font-size: 18px;}
 }
 
+#topImg {
+  background-repeat: no-repeat;
+}
 
 .switch {
   position: relative;
