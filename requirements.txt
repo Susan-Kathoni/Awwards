@@ -11,6 +11,7 @@ django-braces==1.14.0
 django-heroku==0.3.1
 django-model-utils==4.1.0
 django-registration==3.1.1
+django-star==0.999
 django-star-ratings==0.9.1
 django-tinymce==3.1.0
 django-vote==2.2.0
