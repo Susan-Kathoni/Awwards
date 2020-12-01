@@ -6,8 +6,7 @@
 Susan K. Kariuki
 
 ## Description
-
-
+The application allows a user to post a project he/she has created and get it reviewed by his/her peers. A project can be rated based on 3 different criteria that is, design, usability and content.
 
 ## Technologies Used
 
