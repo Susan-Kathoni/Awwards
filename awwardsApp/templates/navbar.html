@@ -24,7 +24,7 @@
           aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
-      {% if user.is_authenticated %}
+      
       <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
           <ul class="navbar-nav mr-auto">
               
@@ -44,7 +44,7 @@
 
           </div>
 
-          {% else %}
+          
           <div>
               <li class="navbar-item" style="list-style: none;">
                   <a class="nav-link text-black" href="/accounts/login/">
@@ -52,15 +52,15 @@
                   </a>
               </li>
           </div>
-          <div>
+          <!-- <div>
               <li class="navbar-item" style="list-style: none;">
                   <a class="nav-link text-black" href="/accounts/login/">
                       <h4>Register</h4>
                   </a>
 
               </li>
-          </div>
-          {% endif %}
+          </div> -->
+          
           </ul>
           <div class="navbar-nav">
               <div class="text-center">
