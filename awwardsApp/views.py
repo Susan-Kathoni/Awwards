@@ -18,10 +18,12 @@ from rest_framework import status
 from .permissions import IsAdminOrReadOnly
 
 
+
 # Create your views here.
 def index(request):
     date =dt.date.today()
     projects = Projects.objects.all()
+    print("Projects...",projects)
     return render(request, 'index.html', locals())
 
 
@@ -62,7 +64,7 @@ def new_post(request):
                 form = ProjectForm(request.POST, request.FILES)
                 if form.is_valid():
                         add=form.save(commit=False)
-                        add.user = current_user
+                        add.author = current_user
                         add.save()
                 return redirect('posts/post_project.html')
         else:

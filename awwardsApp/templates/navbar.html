@@ -1,215 +1,83 @@
 <div class="over-nav container-fluid px-4 py-4 c-darkgrey txt-lightgrey ">
   <div class="d-flex justify-content-between">
-      <div class="d-flex mr-auto">
-          <img id="img-icon" src="/static/photos/logo.jpg" style="width: 50px; height: 50px;">
-      </div>
-      <div class="d-flex">
-          <p class="d-flex ml-auto" style="font-size:2rem;"><b> Welcome to Awwwards Website</b></p>
-      </div>
-      <div class="d-flex ml-auto">
-      </div>
+    <div class="d-flex mr-auto">
+      <img id="img-icon" src="/static/photos/logo.jpg" style="width: 95px; height: 95px;">
+    </div>
+    <div class="d-flex">
+      <p class="d-flex ml-auto" style="font-size:2rem;"><b> Welcome to Awwwards Website</b></p>
+    </div>
+    <div class="d-flex ml-auto">
+    </div>
   </div>
 </div>
 
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-info">
   <div class="container-fluid px-0 d nav-border text-white-50">
-      <div id="menu-toogle" class="d-flex align-items-center w-25 pl-4">
-          <h6 class="mb-0 pr-4 f-10"><b>&#9776; MENU</b></h6>
+    <div id="menu-toogle" class="d-flex align-items-center w-25 pl-4">
+      <h6 class="mb-0 pr-4 f-10"><b>&#9776; MENU</b></h6>
 
-            <a class="active" href="{% url 'home' %}" style="font-size: 20px;"><i class="fa fa-fw fa-home" style="color: white;"></i> Home</a>
-      </div>
+      <a class="active" href="{% url 'home' %}" style="font-size: 20px;"><i class="fa fa-fw fa-home"
+          style="color: white;"></i> Home</a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-          data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+      <div>
+        <ul class="navbar-nav ml-auto" style="list-style: none">
+          {% if not request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link open-nav" href="/accounts/login"><i class="fa fa-user"
+                style="font-size:30px;color:black;padding-right: 20px;">Login</i></a>
+               
+          </li>
+          {% endif %}
+        </ul>
+        {% if request.user.is_authenticated %}
+        <div class="row">
           <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+          <div class="column">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Account
+            </a>
+          
+          <div class="column">
+            <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+              <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
               
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">Account
-                  </a>
-                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                      <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-                      <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                  </div>
-              </li>
-          </ul>
-          <div>
-
-              <a class="navbar-brand" href="{% url 'new_post' %}">Submit your project</a>
-
+            </div>
           </div>
-
-          
-          <div>
-              <li class="navbar-item" style="list-style: none;">
-                  <a class="nav-link text-black" href="/accounts/login/">
-                      <h4>Login</h4>
-                  </a>
-              </li>
-          </div>
-          <!-- <div>
-              <li class="navbar-item" style="list-style: none;">
-                  <a class="nav-link text-black" href="/accounts/login/">
-                      <h4>Register</h4>
-                  </a>
-
-              </li>
-          </div> -->
-          
-          </ul>
-          <div class="navbar-nav">
+        </div>
+        </li>
+      </ul>
+          <div class="column">
+            <div class="navbar-nav">
               <div class="text-center">
-                  <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}">
-                      <input style="text-align: center;" class="form-control" name="username" type="search"
-                          placeholder="Search... " aria-label="Search">
-                  </form>
+                <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}">
+                  <input style="text-align: center;" class="form-control" name="username" type="search"
+                    placeholder="Search... " aria-label="Search">
+                </form>
               </div>
+            </div>
           </div>
-
-
-          
-
-
-
-
+          <div class="column">
+          <a class="navbar-brand" href="{% url 'new_post' %}">Submit your project</a>
+        </div>
+          <div class="column">
+            <ul class="navbar-nav ml-auto" style="list-style: none; color: black; padding-left: 10px;">
+              <li> <a href="accounts/logout">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+        {%endif%}
       </div>
+      </ul>
+      
+    </div>
 </nav>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!-- <nav class="navbar navbar-expand-lg bg-info" id="navMain">
-
-   <div id="navbar" class="container-fluid" style="border-bottom: 1px solid rgb(231, 230, 230);"> -->
-     <!-- <div class="row">
-      <div class="col-md-1"
-        style="padding-top:15px; border-right:1px solid rgb(226, 225, 225); font-family: 'Encode Sans Expanded', sans-serif;"> -->
-     <!-- <div class="">
-          <div id="main"> -->
-     <!-- <span style="cursor:pointer" onclick="openNav()">&#9776; MENU</span> -->
-     <!-- </div> -->
-     <!-- <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> CLOSE &times;</a>
-            <li class="dropdown-divider"></li>
-            <a href="/">Home</a>
-            <li class="dropdown-divider"></li>
-            <a href="#" style="font-size:15px">Register/Log in</a>
-            <a href="#" style="font-size:15px">Home</a>
-            <a href="#" style="font-size:15px">Winners</a>
-            <a href="#" style="font-size:15px">Nominees</a>
-            <a href="#" style="font-size:15px">Academy</a>
-            <a href="#" style="font-size:15px">Professional directory</a>
-            <a href="#" style="font-size:15px">Jobs & Talent</a>
-            <a href="#" style="font-size:15px">Blog</a>
-            <a href="#" style="font-size:15px">eBook & Publications</a>
-            <a href="#" style="font-size:15px">Jury2020</a>
-            <a href="#" style="font-size:15px">Conferences<br>Toronto/Cancelled<br>San Francisco/Cancelled</a>
-
-            <a href="#" style="font-size:15px">Activate black option<label class="switch">
-
-                <input type="checkbox">
-                <span class="slider round"></span>
-              </label></a>
-
-          </div>
-          <br>
-          <br> -->
-
-
-     <!-- </div> -->
-
-
-     <!-- </div>
-    </div>
-    <div class="col-md-1" style="padding-top:10px;"> -->
-     <!-- <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}"
-       style="margin:auto;max-width:480px"></form>
-     <input type="text" class="form-control my-2 my-sm-0 search-input" name="post" placeholder="Search .." id="search">
-     <button type="submit"><i class="fa fa-search"></i></button>
-     </form> -->
-     <!-- </div> -->
-     <!-- <div class="col-md-8"
-       style=" padding-top:5px;text-align:center;font-family: 'Comfortaa', cursive; letter-spacing:2px;">
-       <div class="row">
-         <div class="col-md-10">
-           <a class="navbar-brand navbar-right" href="{% url 'home' %}"
-             style="font-size:25px; color:black; "><strong>awwwards.</strong></a>
-         </div>
-         <div class="col-md-2" style="padding-top:10px;">
-           <div class="row">
-             <div class="col-md-6" style="padding-top:5px;">
-               <a href="" style="font-size:15px; color:black; text-decoration: none;">{{ user.username }}</a>
-             </div>
-             <div class="col-md-6">
-               {% if user.is_authenticated %}
-               <div class="dropdown">
-                 <a class="btn btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"><span style="cursor:pointer">&#9776;</span>
-                 </a>
-                 <li class="nav-item dropdown">
-                   <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o" aria-hidden="true"></i>
-                   </a>
-                   <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                     <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-                     <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                   </div>
-                 </li>
-               </div>
-             </div>
-             {% else %}
-
-             <a class='btn btn-default' href="/accounts/login/?next=/">Login</a>
-
-             {% endif %}
-           </div>
-         </div>
-       </div>
-
-       <div class="col-md-2" style="padding-top:15px; background-color: #49c5b6; text-align:center">
-         <a href="{%url 'new_post'%}" style="color:white; font-size:14px; text-decoration: none; ">SUBMIT YOUR
-           SITE!
-         </a>
-       </div>
-     </div>
-   </div>
-   </div>
-
- </nav>
-
- {% block scripts %}
- <script>
-   function openNav() {
-     document.getElementById("mySidenav").style.width = "500px";
-   }
-
-   function closeNav() {
-     document.getElementById("mySidenav").style.width = "0";
-   }
- </script>
-
- {% endblock  %} -->
-
-
-
-
-
-
-
-
- 

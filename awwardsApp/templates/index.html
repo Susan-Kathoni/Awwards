@@ -14,25 +14,30 @@
     <div class="header" style="height:50vh; font-family: 'Yanone Kaffeesatz', sans-serif;">
         <div class="container" style="color:white;">
             <div class="row" style="padding-top:50px;">
-                <div class="col-md-4" style="font-size: 30px"><cite>Site of the day{{date|date:"F d, Y"}}</cite></div>
+                <div class="col-md-4" style="font-size: 25px; font-family: 'Sansita Swashed', cursive;"><cite>Site of
+                        the day{{date|date:"F d, Y"}}</cite></div>
             </div>
             <div style="text-align:center; font-size: 90px; padding-top:35px;">
                 <h1>PHOTOSTUDIO</h1>
             </div>
             <div style="text-align:center; font-size: 30px">
-                <h4> By:<strong style="color:#49c5b6;"  class="mr-3">Susan Kariuki</strong>From Kenya<strong class="ml-3">8.03</strong></h4>
+                <h4> By:<strong style="color:#49c5b6;" class="mr-3">Susan Kariuki</strong>From Kenya<strong
+                        class="ml-3">8.03</strong></h4>
             </div>
         </div>
     </div>
     <div id="box" class="col-md-4">
-        <button class="btn" style=" border-radius: 5em; background-color: #49c5b6; border:none; padding: 2px; width: 100px;"><a
-                target="blank" style="color: white; text-decoration:none;" href="https://photostudiokathoni2.herokuapp.com/">Visit</a></button>
-        <button class="btn" style="color: white; border-radius: 5em; background-color: transparent; border:1px solid white; padding: 2px; width: 80px;">Collect</button>
-    
-        <img src="/static/photos/icons8-man-blond-hair-48.png" style="float:right;">
-        <img src="/static/photos/icons8-person-48.png" style="float:right; ">
+        <button class="btn"
+            style=" border-radius: 5em; background-color: #49c5b6; border:none; padding: 2px; width: 100px;"><a
+                target="blank" style="color: white; text-decoration:none;"
+                href="https://photostudiokathoni2.herokuapp.com/">Visit</a></button>
+        <button class="btn"
+            style="color: white; border-radius: 5em; background-color: transparent; border:1px solid white; padding: 2px; width: 80px;">Collect</button>
+
+        <img src="/static/photos/icons8-man-blond-hair-48.png" style="flex:end;">
+        <img src="/static/photos/icons8-person-48.png" style="flex:end;">
     </div>
-    </div>
+</div>
 
 
 
@@ -42,36 +47,82 @@
 
 
 <div class="jumbotron">
-    <div class="container-fluid" style="margin-bottom: 10px;  padding-left:55px; padding-right:55px; font-family: 'Grenze Gotisch', cursive;">
-         <h3 class="text-center text-danger" style="font-family: 'Aclonica', sans-serif;">POSTED PROJECTS</h2>
+    <div class="container-fluid"
+        style="margin-bottom: 10px;  padding-left:55px; padding-right:55px; font-family: 'Grenze Gotisch', cursive;">
+        <h3 class="text-center text-danger" style="font-family: 'Aclonica', sans-serif;">POSTED PROJECTS</h2>
+    </div>
+    <div class="row">
+        {% for post in projects %}
+        <div class="col-md-3" style="margin-bottom:25px;">
+            <div id="image" class="hover02 column body">
+            </div>
+            <div class="card-header" style="background-color:white; font-size: 13px; margin-top:0px;">
+                <img class="card-img-top" src="{{post.image.url}}" alt="{{post.title}}" height="200px" width="200px">
+                <p style="font-weight:bold;" class="text-center"><strong> {{post.title}}</strong></p>
+                <p style="font-weight:bold;" class="text-center"><strong>{{post.description}}</strong> </p>
+                <p style="font-weight:bold;" class="text-center"><strong>FROM: <i>{{post.country}}</i></strong> </p>
+                <p style="font-weight:bold;" class="text-center"><strong>{{post.post_date|date:"d /m/Y"}}</strong> </p>
+                <small class="text-muted ml-2"><img src="{{ project_item.Author.profile.photo.url }}" alt=""
+                        class="rounded-circle img-fluid mr-1" style="width: 30px;">
+                    posted By: {{post.author|upper}} </small>
+
+                <div class="">
+                    <a target="_blank" href="{{post.link}}" style="color:black; text-decoration:none;"><strong>Visit
+                            Website</strong>
+                    </a>
+                   
                 </div>
-                <div class="row">
-                    {% for post in posts %}
-                    <div class="col-md-3" style="margin-bottom:25px;">
-                        <div id="image" class="hover02 column body">
-                            <figure><a target="blank" href="{%url 'vote' post_id=post.id%}"><img class="img-responsive" src="{{post.image.url }}"
-                                        width="100%" ; height="200px" ;></a></figure>
-                        </div>
-                        <div class="card-header" style="background-color:white; font-size: 13px; margin-top:0px;">
-                            <p style="font-weight:bold;" class="text-center">{{post.title}}</p>
-                            <p class="size">From {{post.country}} &nbsp; {{post.post_date}}</p>
-        
-                            
-                           
-                        
-                            <div class="">
-                                <a target="_blank" href="{{post.link}}" style="color:black; text-decoration:none;"><strong>Visit Website</strong>
-                                </a>
-                                <a href="" class="btn btn-sm btn-primary">Visit Website</a>
-                            </div>
-                        </div>
-                        <div class="card-footer" style="background-color:white;">
-                            <p><cite>By <strong>{{post.user}}</strong></cite></p>
-                        </div>
-                    </div>
-                    {% endfor %}
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+
+
+
+
+
+
+
+{% for project_item in projects %}
+<div class="col-md-4">
+    <div class="card-deck">
+        <div class="card mb-2 mt-2 ">
+            <!-- Card image -->
+            <div class="view overlay zoom image2">
+                {% if project_item.project_image %}
+                <a href="/project/{{project_item.id}}">
+                    <img class="card-img-top" src="{{project_item.project_image.url}}"
+                        alt="{{ project_item.project_name }}" height="300px" width="320">
+                </a>
+                {% else %}
+                <a href="/project/{{project_item.id}}">
+                    <img class="card-img-top" src="https://source.unsplash.com/1600x900/?fun,vacation"
+                        alt="{{ project_item.project_name }}">
+                </a>
+                {% endif %}
+            </div>
+            <div class="card-body pr-2 pl-2 pr-2 mr-2">
+                <h5 class="card-title ml-4">{{ project_item.project_title }}</h5>
+                <div class="row ml-2">
+                    <div class="col-lg-6 dark-text">
+                        <small class="text-muted ml-2"><img src="{{ project_item.Author.profile.photo.url }}" alt=""
+                                class="rounded-circle img-fluid mr-1" style="width: 30px;">
+                            posted By: {{project_item.author|upper}} </small>
+                        <small> <span class="mr-1"> From {{project_item.country.name}}</span>
+                        </small> </div>
+                    <div class="col-lg-6 dark-text d-flex justify-content-end"> <small>
+                            {{project_item.pub_date|date:"d /m/Y"}} </small></div>
                 </div>
             </div>
         </div>
-        {% endblock %}
-        <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    </div>
+    <!-- end of card deck  -->
+</div>
+{% endfor %}
+</div>
+</div>

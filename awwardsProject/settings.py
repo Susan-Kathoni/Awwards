@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'cloudinary',
+    'django.contrib.django_countries',
 ]
 
 cloudinary.config( 
@@ -58,7 +59,7 @@ cloudinary.config(
   api_key = '743211362166119',
   api_secret = 'XYyewjb2QVfl9rUerT8UNTHsAf4',   
 )
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -179,7 +180,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL= '/'
+LOGOUT_REDIRECT_URL= '/'
 
 # STAR_RATINGS_RERATE = False
 # STAR_RATINGS_RANGE=10
