@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'cloudinary',
-    'django_countries',
+    # 'django_countries',
 ]
 
 cloudinary.config( 
