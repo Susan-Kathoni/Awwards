@@ -43,7 +43,7 @@
             <li class="nav-item dropdown">
           <div class="column">
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">Account
+              aria-haspopup="true" aria-expanded="false" style="color: khaki;">Account
             </a>
           
           <div class="column">
@@ -55,7 +55,7 @@
         </div>
         </li>
       </ul>
-          <div class="column">
+          <div class="column" style="padding-left: 30px;">
             <div class="navbar-nav">
               <div class="text-center">
                 <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}">
@@ -65,12 +65,14 @@
               </div>
             </div>
           </div>
-          <div class="column">
-          <a class="navbar-brand" href="{% url 'new_post' %}">Submit your project</a>
+          <div class="column" style="padding-left: 80px;">
+            <button>
+          <a class="navbar-brand" href="{% url 'new_post' %}" style="float: right; color: coral;">Submit your project</a>
+        </button>
         </div>
-          <div class="column">
+          <div class="column" style="padding-left: 250px;">
             <ul class="navbar-nav ml-auto" style="list-style: none; color: black; padding-left: 10px;">
-              <li> <a href="accounts/logout">Logout</a></li>
+              <li> <a href="accounts/logout" style="color: black; font-size:20px" ><i class="fa fa-sign-out" aria-hidden="true"></i></i>Logout</a></li>
             </ul>
           </div>
         </div>

@@ -9,8 +9,8 @@
 {% block content %}
 {{block.super}}
 
-
-<div class="btn1 btn container-fluid" style="background-image: url(/static/photos/topImage.jpg)" id="topImg">
+<div class="btn1 btn container-fluid" style="background-image: url(/static/photos/topImage.jpg); width:100%"
+    id="topImg">
     <div class="header" style="height:50vh; font-family: 'Yanone Kaffeesatz', sans-serif;">
         <div class="container" style="color:white;">
             <div class="row" style="padding-top:50px;">
@@ -38,14 +38,6 @@
         <img src="/static/photos/icons8-person-48.png" style="flex:end;">
     </div>
 </div>
-
-
-
-
-</div>
-
-
-
 <div class="jumbotron">
     <div class="container-fluid"
         style="margin-bottom: 10px;  padding-left:55px; padding-right:55px; font-family: 'Grenze Gotisch', cursive;">
@@ -53,10 +45,11 @@
     </div>
     <div class="row">
         {% for post in projects %}
+        
         <div class="col-md-3" style="margin-bottom:25px;">
             <div id="image" class="hover02 column body">
             </div>
-            <div class="card-header" style="background-color:white; font-size: 13px; margin-top:0px;">
+            <div class="card-header" style="background-color:white; font-size: 13px; margin-top:0px; height: 100vh;">
                 <img class="card-img-top" src="{{post.image.url}}" alt="{{post.title}}" height="200px" width="200px">
                 <p style="font-weight:bold;" class="text-center"><strong> {{post.title}}</strong></p>
                 <p style="font-weight:bold;" class="text-center"><strong>{{post.description}}</strong> </p>
@@ -67,12 +60,20 @@
                     posted By: {{post.author|upper}} </small>
 
                 <div class="">
-                    <a target="_blank" href="{{post.link}}" style="color:black; text-decoration:none;"><strong>Visit
-                            Website</strong>
-                    </a>
-                   
+
+                    <button class="btn"
+                        style=" border-radius: 5em; background-color: #49c5b6; border:none; padding: 2px; height:40px; width: 200px;"><a
+                            target="blank" style="color: white; text-decoration:none;"
+                            href="{{post.link}}"><strong>Visit
+                                Website</strong></a></button>
+
+
                 </div>
-            </div>
+            
+
+
+            
+        </div>
 
         </div>
         {% endfor %}
@@ -80,49 +81,7 @@
 </div>
 </div>
 {% endblock %}
+
+
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
 <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
-
-
-
-
-
-
-
-{% for project_item in projects %}
-<div class="col-md-4">
-    <div class="card-deck">
-        <div class="card mb-2 mt-2 ">
-            <!-- Card image -->
-            <div class="view overlay zoom image2">
-                {% if project_item.project_image %}
-                <a href="/project/{{project_item.id}}">
-                    <img class="card-img-top" src="{{project_item.project_image.url}}"
-                        alt="{{ project_item.project_name }}" height="300px" width="320">
-                </a>
-                {% else %}
-                <a href="/project/{{project_item.id}}">
-                    <img class="card-img-top" src="https://source.unsplash.com/1600x900/?fun,vacation"
-                        alt="{{ project_item.project_name }}">
-                </a>
-                {% endif %}
-            </div>
-            <div class="card-body pr-2 pl-2 pr-2 mr-2">
-                <h5 class="card-title ml-4">{{ project_item.project_title }}</h5>
-                <div class="row ml-2">
-                    <div class="col-lg-6 dark-text">
-                        <small class="text-muted ml-2"><img src="{{ project_item.Author.profile.photo.url }}" alt=""
-                                class="rounded-circle img-fluid mr-1" style="width: 30px;">
-                            posted By: {{project_item.author|upper}} </small>
-                        <small> <span class="mr-1"> From {{project_item.country.name}}</span>
-                        </small> </div>
-                    <div class="col-lg-6 dark-text d-flex justify-content-end"> <small>
-                            {{project_item.pub_date|date:"d /m/Y"}} </small></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end of card deck  -->
-</div>
-{% endfor %}
-</div>
-</div>
