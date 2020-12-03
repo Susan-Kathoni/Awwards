@@ -18,7 +18,7 @@ The application allows a user to post a project he/she has created and get it re
 6. HTML
 7. CSS
 8. Postres
-9. Figma - 
+9. Figma - https://www.figma.com/file/bdFbANcp1wI1RunyCBddeZ/Awwwards?node-id=0%3A1
 
 ## Features
 
