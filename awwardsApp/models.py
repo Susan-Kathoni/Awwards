@@ -55,7 +55,7 @@ class Profile(models.Model):
 class Projects(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     image = CloudinaryField('image', blank=True, null=True)
-    description = models.TextField(max_length=255)
+    description = models.TextField(max_length=300)
     date_created = models.DateTimeField(default=timezone.now)
     title = models.CharField(max_length=255)
     country = models.CharField(max_length=55)
