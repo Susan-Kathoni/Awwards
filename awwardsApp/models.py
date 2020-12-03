@@ -58,7 +58,7 @@ class Projects(models.Model):
     description = models.TextField(max_length=255)
     date_created = models.DateTimeField(default=timezone.now)
     title = models.CharField(max_length=255)
-    country = CountryField(blank_label='(select country)', default='Kenya')
+    country = CountryField(multiple=True)
     link = models.URLField()
     author_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, blank = True, null=True)
 
